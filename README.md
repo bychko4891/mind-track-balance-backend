@@ -1,25 +1,3 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
 
@@ -96,3 +74,128 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+
+
+# MindTrack Balance
+
+The project was created for those who are just starting to learn English. The project uses such technologies as SpringBoot, SpringDataJPA, Hibernate, Spring Security, JUnit, Mockito.
+
+
+## 🚀 About Me
+I have 1 year of experience in developing applications in NestJs.
+
+
+
+## Authors
+
+- [@Anatolii Bychko. Create business logic](https://www.github.com/bychko4891)
+- [@Project Link](https://www.github.com/bychko4891/learnenglish)
+
+
+## 🛠  Skills
+Programming · Java Frameworks · Git · Spring Framework · Hibernate · Debugging · Java Development · Java · Object-Oriented Programming (OOP) · SQL
+
+
+## 🔗 Links
+
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/anatolii-bychko/)
+
+
+
+## Demo
+
+https://e-learn.top
+
+What problem are we trying to solve?
+
+Most of us don’t “decide” to lose focus or feel drained—it happens in small nudges: one notification, one scroll, one tab. Hours later we’re tired, anxious, and unsure where the day went. Traditional productivity tools add more dashboards and guilt. Therapy apps ask for long journaling sessions we rarely finish. The gap is simple: we need tiny, realistic steps that help us notice our state and make better choices in the moment.
+
+Our approach (in plain language)
+
+MindTrack Balance is built around two ideas:
+
+Small check-ins beat big promises. Short notes and a quick mood tap create a trail of gentle data you’ll actually keep up with.
+
+Soft friction beats willpower. A brief pause, a breathing nudge, or a focus rule at the right time is often enough to stop autopilot.
+
+The backend powers these moments: it stores your entries, computes simple trends, and enforces light “friction” (like a pause screen before opening a distracting site). No judgment. No doom dashboards. Just enough structure to help you course-correct.
+
+What you can do today (MVP)
+
+Quick entries & mood: write a sentence, tap a mood, add a tag.
+
+Attention tracking: receive time counters from the browser extension.
+
+Soft friction & focus: add rules—delays, allow/deny lists, schedules.
+
+Weekly digest: friendly summaries instead of noisy charts.
+
+(Optional) Billing: plans and webhooks for future paid tiers.
+
+Technical overview
+
+API: REST (/api/v1) with OpenAPI/Swagger docs; optional WebSocket events.
+
+Modules: auth, users, entries, mood, analytics, focus, reports, billing.
+
+Jobs: background workers for reports, rule checks, and cleanups.
+
+Storage: PostgreSQL by default (ORM entities + migrations).
+
+Cache/Queue: Redis for sessions, rate limits, and job queues.
+
+Security: JWT + refresh tokens, input validation, CORS, rate limiting, helmet.
+
+Observability: structured logs, health checks, metrics.
+
+## Suggested project structure
+```bash
+  /src
+  /config          # env parsing, app config
+  /common          # guards, interceptors, pipes, utils
+  /database        # migrations, ORM entities
+  /modules
+  /auth
+  /users
+  /entries
+  /mood
+  /analytics
+  /focus
+  /reports
+  /billing
+  /jobs            # queue processors
+  /tests           # unit/e2e
+```
+
+Example API surface
+
+POST /auth/login, POST /auth/register, POST /auth/refresh
+
+GET /me, PATCH /me
+
+POST /entries, GET /entries, PATCH /entries/:id, DELETE /entries/:id
+
+POST /mood, GET /mood?from=&to=
+
+POST /focus/rules, GET /focus/rules
+
+GET /analytics/summary?period=weekly
+
+GET /reports/weekly/latest
+
+POST /billing/webhooks (if billing enabled)
+
+Environment (samples)
+
+DATABASE_URL, REDIS_URL
+
+JWT_SECRET, JWT_EXPIRES_IN
+
+PORT, NODE_ENV
+
+BILLING_PROVIDER, BILLING_WEBHOOK_SECRET (optional)
+
+Roadmap
+
+Voice notes, richer focus rules, group support, mobile (React Native), better exports.
