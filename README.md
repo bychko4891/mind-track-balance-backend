@@ -1,3 +1,34 @@
+
+# MindTrack Balance
+
+The project was created for those who are just starting to learn English. The project uses such technologies as SpringBoot, SpringDataJPA, Hibernate, Spring Security, JUnit, Mockito.
+
+
+## 🚀 About Me
+I have 1 year of experience in developing applications in NestJs.
+
+
+
+## Authors
+
+- [@Anatolii Bychko. Create business logic](https://www.github.com/bychko4891)
+- [@Project Link](https://www.github.com/bychko4891/learnenglish)
+
+
+## 🛠  Skills
+Programming · Java Frameworks · Git · Spring Framework · Hibernate · Debugging · Java Development · Java · Object-Oriented Programming (OOP) · SQL
+
+
+## 🔗 Links
+
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/anatolii-bychko/)
+
+
+
+## Demo
+
+https://e-learn.top
+
 What problem are we trying to solve?
 
 Most of us don’t “decide” to lose focus or feel drained—it happens in small nudges: one notification, one scroll, one tab. Hours later we’re tired, anxious, and unsure where the day went. Traditional productivity tools add more dashboards and guilt. Therapy apps ask for long journaling sessions we rarely finish. The gap is simple: we need tiny, realistic steps that help us notice our state and make better choices in the moment.
