@@ -1,2 +1,1 @@
-export declare class RsaKeyModule {
-}
+export declare class RsaKeyModule {}

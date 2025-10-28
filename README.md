@@ -89,8 +89,8 @@ I have 1 year of experience in developing applications in NestJs.
 
 ## Authors
 
-- [@Anatolii Bychko. Create business logic](https://www.github.com/bychko4891)
-- [@Project Link](https://www.github.com/bychko4891/learnenglish)
+- [@Anatolii Bychko. Create business logic, develop a project](https://www.github.com/bychko4891)
+- [@Project Link](https://github.com/bychko4891/mind-track-balance-backend)
 
 
 ## 🛠  Skills

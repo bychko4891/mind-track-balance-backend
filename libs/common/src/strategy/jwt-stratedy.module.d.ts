@@ -1,2 +1,1 @@
-export declare class JwtStrategyModule {
-}
+export declare class JwtStrategyModule {}

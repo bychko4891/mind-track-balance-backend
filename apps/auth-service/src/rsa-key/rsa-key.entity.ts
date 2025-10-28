@@ -1,24 +1,27 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+} from 'typeorm';
 
 @Entity('rsa_keys')
 export class RsaKey {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @PrimaryGeneratedColumn()
-    id: number;
+  @Column({ type: 'text' })
+  publicKey: string;
 
-    @Column({ type: 'text' })
-    publicKey: string;
+  @Column({ type: 'text' })
+  privateKey: string;
 
-    @Column({ type: 'text' })
-    privateKey: string;
+  @Column()
+  revoked: boolean;
 
-    @Column()
-    revoked: boolean;
+  @Column()
+  dateOfRevoked: Date;
 
-    @Column()
-    dateOfRevoked: Date;
-
-    @CreateDateColumn()
-    createdAt: Date;
-
+  @CreateDateColumn()
+  createdAt: Date;
 }

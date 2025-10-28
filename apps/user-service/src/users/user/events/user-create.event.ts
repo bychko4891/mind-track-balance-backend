@@ -1,6 +1,6 @@
 export class UserCreatedEvent {
-    userId: number;
-    email: string;
-    name: string;
-    serviceCodeUUID: string;
+  userId: number;
+  email: string;
+  name: string;
+  serviceCodeUUID: string;
 }

@@ -1,17 +1,13 @@
 import { Module } from '@nestjs/common';
-import {ConfigModule, ConfigService} from '@nestjs/config';
-import {TypeOrmModule} from "@nestjs/typeorm";
-import { join } from 'path';
-import {PassportModule} from "@nestjs/passport";
-import {JwtAuthStrategy} from "../strategy/jwtAuth.startegy";
-import {AuthModule} from "../auth/auth.module";
-import {AuthUser} from "../auth-user/auth-user.entity";
-import {AuthUserJwtRefreshToken} from "../auth-user/auth-user-jwt-refresh-token.entity";
-import {AuthUserModule} from "../auth-user/auth-user.module";
-import {RsaKeyModule} from "../rsa-key/rsa-key.module";
-import {RsaKey} from "../rsa-key/rsa-key.entity";
-import { resolve } from 'path';
-import { existsSync } from 'fs';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { PassportModule } from '@nestjs/passport';
+import { AuthModule } from '../auth/auth.module';
+import { AuthUser } from '../auth-user/auth-user.entity';
+import { AuthUserJwtRefreshToken } from '../auth-user/auth-user-jwt-refresh-token.entity';
+import { AuthUserModule } from '../auth-user/auth-user.module';
+import { RsaKeyModule } from '../rsa-key/rsa-key.module';
+import { RsaKey } from '../rsa-key/rsa-key.entity';
 
 // const envFile = process.env.NODE_ENV === 'production' ? '.env.prod' : '.env.dev';
 // console.log("dkflgkfd dflgk;fdgl fdg^ -->> " + envFile)
@@ -23,37 +19,40 @@ import { existsSync } from 'fs';
 // }
 
 @Module({
-    imports: [
-        AuthModule,
-        RsaKeyModule,
-        AuthUserModule,
-        PassportModule,
-        ConfigModule.forRoot({
-            isGlobal: true,
-            envFilePath: process.env.NODE_ENV === 'production'
-                ? 'apps/auth-service/.env.prod'
-                : 'apps/auth-service/.env.dev',
-            // envFilePath: process.env.NODE_ENV === 'production' ? '.env.prod' : '.env.dev',
-        }),
-        TypeOrmModule.forRootAsync({
-            useFactory: (config: ConfigService) => {
-                console.log('🧪 config.get(DB_PASSWORD_AUTH):', config.get('DB_PASSWORD_AUTH'));
-                console.log('🧪 typeof:', typeof config.get('DB_PASSWORD_AUTH'));
+  imports: [
+    AuthModule,
+    RsaKeyModule,
+    AuthUserModule,
+    PassportModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath:
+        process.env.NODE_ENV === 'production'
+          ? 'apps/auth-service/.env.prod'
+          : 'apps/auth-service/.env.dev',
+      // envFilePath: process.env.NODE_ENV === 'production' ? '.env.prod' : '.env.dev',
+    }),
+    TypeOrmModule.forRootAsync({
+      useFactory: (config: ConfigService) => {
+        console.log(
+          '🧪 config.get(DB_PASSWORD_AUTH):',
+          config.get('DB_PASSWORD_AUTH'),
+        );
+        console.log('🧪 typeof:', typeof config.get('DB_PASSWORD_AUTH'));
 
-                return {
-                    type: 'postgres',
-                    host: config.get<string>('DB_HOST'),
-                    port: config.get<number>('DB_PORT'),
-                    username: config.get<string>('DB_USERNAME_AUTH'),
-                    password: config.get<string>('DB_PASSWORD_AUTH'), // саме тут проблема
-                    database: config.get<string>('DB_NAME_AUTH'),
-                    entities: [RsaKey, AuthUser, AuthUserJwtRefreshToken],
-                    synchronize: true,
-                };
-            },
-            inject: [ConfigService],
-        }),
-    ],
-
+        return {
+          type: 'postgres',
+          host: config.get<string>('DB_HOST'),
+          port: config.get<number>('DB_PORT'),
+          username: config.get<string>('DB_USERNAME_AUTH'),
+          password: config.get<string>('DB_PASSWORD_AUTH'), // саме тут проблема
+          database: config.get<string>('DB_NAME_AUTH'),
+          entities: [RsaKey, AuthUser, AuthUserJwtRefreshToken],
+          synchronize: true,
+        };
+      },
+      inject: [ConfigService],
+    }),
+  ],
 })
 export class AppModule {}

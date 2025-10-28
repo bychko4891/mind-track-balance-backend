@@ -1,2 +1,1 @@
-export declare class CommonService {
-}
+export declare class CommonService {}

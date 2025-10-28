@@ -1,17 +1,13 @@
 import { Module } from '@nestjs/common';
-import {TypeOrmModule} from "@nestjs/typeorm";
-import {PublicImageRepository} from "./image.repository";
-import {PublicImageService} from "./image.service";
-import {PublicImage} from "./image.entity";
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { PublicImage } from './public-image.entity';
+import { PublicImageRepository } from './public-image.repository';
+import { PublicImageService } from './public-image.service';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([PublicImage])
-    ],
-    providers: [
-        PublicImageService,
-        PublicImageRepository,
-    ],
-    // controllers: [CategoryController],
-    exports: [PublicImageModule],
+  imports: [TypeOrmModule.forFeature([PublicImage])],
+  providers: [PublicImageService, PublicImageRepository],
+  // controllers: [CategoryController],
+  exports: [PublicImageModule],
 })
 export class PublicImageModule {}

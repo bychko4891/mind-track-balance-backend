@@ -1,6 +1,5 @@
 export enum PageType {
+  SIMPLE = 'simple',
 
-    SIMPLE = "simple",
-
-    MULTIPLEX = "multiplex",
+  MULTIPLEX = 'multiplex',
 }

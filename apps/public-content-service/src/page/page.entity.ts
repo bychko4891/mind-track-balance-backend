@@ -1,44 +1,48 @@
-import {Column, Entity, Index, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn} from "typeorm";
-import {Exclude} from "class-transformer";
-import {SeoObject} from "../seo/seo-object.entity";
-import {PageType} from "@app/common/enums/page-type.enum";
-import {PageContent} from "../page-content/page-content.entity";
+import {
+  Column,
+  CreateDateColumn,
+  Entity, Index,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { SeoObject } from '../seo/seo-object.entity';
+import { PageBlock } from '../page-block/page-block.entity';
 
-@Entity("pages")
+@Entity('pages')
+@Index('idx_pages_in_menu', ['inMenu'])
+@Index('idx_pages_in_header_menu', ['inHeaderMenu'])
 export class Page {
+  @PrimaryGeneratedColumn('uuid')
+  uuid!: string;
 
-    @Exclude() // аналог @JsonIgnore
-    @PrimaryGeneratedColumn('increment') // GenerationType.IDENTITY
-    id!: number;
+  @Column({ type: 'varchar', nullable: false, unique: true })
+  name: string | null = null;
 
-    @Index({ unique: true })
-    @Column({ type: 'varchar', length: 255, nullable: false })
-    uuid!: string;
+  @Column({ type: 'varchar', nullable: false, unique: true })
+  url!: string;
 
-    @Column({ type: 'varchar', length: 1024, nullable: false })
-    url!: string;
+  @Column({ type: 'boolean', default: false })
+  inMenu: boolean = false;
 
-    @Column({ type: 'boolean', default: false })
-    inMenu!: boolean;
+  @Column({ type: 'boolean', default: false })
+  inHeaderMenu: boolean = false;
 
-    @OneToOne(() => SeoObject, { cascade: true, nullable: true })
-    @JoinColumn({ name: 'seo_object_id', referencedColumnName: 'id' })
-    seoObject!: SeoObject | null;
+  @OneToMany(() => SeoObject, (seo) => seo.page, {
+    cascade: true,
+  })
+  seoObjectTranslation: SeoObject[] = [];
 
-    // Postgres: enum з іменем (аналог "named enum")
-    @Column({
-        type: 'enum',
-        enum: PageType,
-        enumName: 'page_type', // створить тип "page_type"
-        default: PageType.SIMPLE,
-    })
-    pageType!: PageType;
+  @OneToMany(() => PageBlock, (b) => b.page, {
+    eager: true,
+    cascade: true,
+    // cascade: ['insert', 'update'],
+  })
+  blocks: PageBlock[] = [];
 
-    @Exclude() // аналог @JsonIgnore (EAGER як у JPA)
-    @OneToMany(
-        () => PageContent,
-        (content) => content.applicationPage,
-        { eager: true },
-    )
-    appPageContents!: PageContent[];
+  @CreateDateColumn({ type: 'timestamptz' })
+  createdAt!: Date;
+
+  @UpdateDateColumn({ type: 'timestamptz' })
+  updatedAt!: Date;
 }
