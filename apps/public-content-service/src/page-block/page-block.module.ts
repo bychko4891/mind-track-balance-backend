@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { BlockPagesRepository } from './block-pages.repository';
-import { BlockPagesController } from './block-pages.controller';
-import { BlockPagesService } from './block-pages.service';
-import { PageContent } from './page-content.entity';
+import { PageBlock } from './page-block.entity';
+import { PageBlockRepository } from './page-block.repository';
+import { PageBlockService } from './page-block.service';
+import { PageBlockController } from './page-block.controller';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([PageContent])],
-  providers: [BlockPagesService, BlockPagesRepository],
-  controllers: [BlockPagesController],
+  imports: [TypeOrmModule.forFeature([PageBlock])],
+  providers: [PageBlockService, PageBlockRepository],
+  controllers: [PageBlockController],
   exports: [BlockPagesModule],
 })
 export class BlockPagesModule {}

@@ -31,7 +31,7 @@ export class AuthService {
     deletionTime.setDate(deletionTime.getDate() + 7);
     const tokens = await this._createTokens(user);
     user.jwtRefreshToken.deletionTime = deletionTime;
-    user.jwtRefreshToken.deviceFingerprinting = loginDto.deviceFingerprinting;
+    user.jwtRefreshToken.deviceFingerprinting = loginDto.deviceId;
     user.jwtRefreshToken.jwtRefreshToken = await this._hashJwtRefreshToken(
       tokens.refreshToken,
     );

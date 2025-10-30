@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class BlockPagesService {
+export class PageBlockService {
   // private readonly saltRounds = 12;
   //
   constructor() {}

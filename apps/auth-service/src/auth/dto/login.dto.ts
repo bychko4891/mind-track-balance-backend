@@ -1,4 +1,12 @@
-import { IsEmail, IsString, Length, Max, Min } from 'class-validator';
+import {
+  IsEmail,
+  IsHexadecimal,
+  IsIn,
+  IsString,
+  Length,
+} from 'class-validator';
+
+export type ClientKind = 'admin-app' | 'client-app';
 
 export class LoginDto {
   @IsEmail({}, { message: 'Email address required' })
@@ -9,19 +17,14 @@ export class LoginDto {
   readonly password: string;
 
   @IsString({ message: 'Password must be a string' })
+  @IsHexadecimal({ message: 'Device ID must be hexadecimal' })
   @Length(32, 32, {
     message: 'Device Fingerprinting must be between 32 characters',
   })
-  readonly deviceFingerprinting: string;
+  readonly deviceId: string;
 
-  constructor(email: string, password: string, deviceFingerprinting: string) {
-    this.email = email;
-    this.password = password;
-    this.deviceFingerprinting = deviceFingerprinting;
-    // Object.freeze(this);
-  }
-
-  toString() {
-    return `LoginDto(email=${this.email}, password=${this.password}, deviceFingerprinting=${this.deviceFingerprinting})`;
-  }
+  @IsIn(['admin-app', 'client-app'], {
+    message: 'Client must be either "admin-app" or "client-app"',
+  })
+  readonly client!: ClientKind;
 }

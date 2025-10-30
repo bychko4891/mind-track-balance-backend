@@ -1,13 +1,13 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
-import { PageContent } from './page-content.entity';
+import { PageBlock } from './page-block.entity';
 
 @Injectable()
-export class BlockPagesRepository {
+export class PageBlockRepository {
   constructor(
-    @InjectRepository(PageContent)
-    private readonly repository: Repository<PageContent>,
+    @InjectRepository(PageBlock)
+    private readonly repository: Repository<PageBlock>,
   ) {}
 
   // async findByEmail(email: string): Promise<User  | null> {

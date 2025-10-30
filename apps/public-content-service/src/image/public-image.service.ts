@@ -1,13 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { ConfigService } from '@nestjs/config';
-import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class PublicImageService {
   // private readonly saltRounds = 12;
   //
   constructor() {}
+
   //
   //
   // async login(loginDto: LoginDto): Promise<JwtTokensDto> {

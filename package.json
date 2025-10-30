@@ -7,18 +7,22 @@
   "license": "UNLICENSED",
   "scripts": {
     "build:all": "concurrently \"nest build auth-service\" \"nest build user-service\" \"nest build public-content-service\"",
+
     "build:auth": "cross-env NODE_ENV=production nest build auth-service && tsc-alias -p apps/auth-service/tsconfig.build.json",
     "start:auth": "nest start auth-service --watch",
     "start:dev:auth": "nest start auth-service --watch",
     "start:debug:auth": "cross-env NODE_ENV=development ts-node-dev --inspect-brk -r tsconfig-paths/register apps/auth-service/src/main.ts",
+
     "build:public": "cross-env NODE_ENV=production nest build public-content-service && tsc-alias -p apps/public-content-service/tsconfig.build.json",
     "start:public": "nest start public-content-service --watch",
     "start:dev:public": "nest start public-content-service --watch",
     "start:debug:public": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register apps/public-content-service/src/main.ts",
+
     "build:user": "nest build user-service",
     "start:user": "nest start user-service --watch",
     "start:dev:user": "nest start user-service --watch",
     "start:debug:user": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register apps/user-service/src/main.ts",
+
     "build:attention": "nest build attention-service",
     "start:attention": "nest start attention-service --watch",
     "start:dev:attention": "nest start attention-service --watch",
