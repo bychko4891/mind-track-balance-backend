@@ -4,14 +4,14 @@ import { AuthUser } from './auth-user.entity';
 
 @Entity('auth_user_jwt_refresh_tokens')
 export class AuthUserJwtRefreshToken {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  uuid!: string;
 
   @Column({ nullable: true })
   jwtRefreshToken: string;
 
   @Column({ nullable: true })
-  deviceFingerprinting: string;
+  deviceId: string;
 
   @OneToOne(() => AuthUser, (user) => user.jwtRefreshToken)
   @JoinColumn()

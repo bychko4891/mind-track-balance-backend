@@ -10,26 +10,23 @@ import { AuthUserJwtRefreshToken } from './auth-user-jwt-refresh-token.entity';
 
 @Entity('auth_users')
 export class AuthUser {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  uuid!: string;
 
-  @Column({ type: 'uuid' })
-  uuid: string;
+  @Column({ type: 'varchar', unique: true })
+  email!: string;
 
-  @Column()
-  email: string;
+  @Column({ type: 'varchar', nullable: false, length: 60 })
+  password!: string;
 
-  @Column()
-  password: string;
+  @Column({ type: 'boolean', default: false })
+  active: boolean = false;
 
-  @Column()
-  active: boolean;
+  @Column({ type: 'integer', nullable: true })
+  serviceCode: number | null = null;
 
-  @Column({ nullable: true })
-  serviceCode: number;
-
-  @Column()
-  serviceCodeUUID: string;
+  @Column({ type: 'uuid', nullable: true })
+  serviceCodeUUID: string | null = null;
 
   @Column({
     type: 'enum',

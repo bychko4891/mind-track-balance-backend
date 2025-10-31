@@ -3,11 +3,13 @@ import { AppModule } from './app/app.module';
 import { ConfigService } from '@nestjs/config';
 import { Transport } from '@nestjs/microservices';
 
+process.env.TZ = process.env.TZ || 'Europe/Kiev';
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const configService = app.get(ConfigService);
-  const port = configService.get<number>('PORT_USER') || 3001;
+  const port = configService.get<number>('PORT_USER') || 3003;
 
   // Підключаємо мікросервіс Kafka
   app.connectMicroservice({
@@ -30,7 +32,6 @@ async function bootstrap() {
 
   // Запускаємо всі мікросервіси та веб-сервер (якщо він потрібен)
   await app.startAllMicroservices();
-
   await app.listen(port);
 }
 bootstrap();

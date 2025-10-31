@@ -241,24 +241,27 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_MULTIPLE_DATABASES: auth,lessons,public,users,notification,media
+      POSTGRES_MULTIPLE_DATABASES: auth,users,public,attention,media,mind_track
       POSTGRES_USERNAME_AUTH: ${DB_USERNAME_AUTH}
       POSTGRES_PASSWORD_AUTH: ${DB_PASSWORD_AUTH}
-      POSTGRES_USERNAME_LESSON: ${DB_USERNAME_LESSON}
-      POSTGRES_PASSWORD_LESSON: ${DB_PASSWORD_LESSON}
+      POSTGRES_USER_USER: ${DB_USERNAME_USER}
+      POSTGRES_USER_PASSWORD: ${DB_PASSWORD_USER}
       POSTGRES_USERNAME_PUBLIC: ${DB_USERNAME_PUBLIC}
       POSTGRES_PASSWORD_PUBLIC: ${DB_PASSWORD_PUBLIC}
-      POSTGRES_USERNAME_USER: ${DB_USERNAME_USER}
-      POSTGRES_PASSWORD_USER: ${DB_PASSWORD_USER}
-      POSTGRES_USERNAME_NOTIFICATION: ${DB_USERNAME_NOTIFICATION}
-      POSTGRES_PASSWORD_NOTIFICATION: ${DB_PASSWORD_NOTIFICATION}
+      POSTGRES_USERNAME_ATTENTION: ${DB_USERNAME_ATTENTION}
+      POSTGRES_PASSWORD_ATTENTION: ${DB_PASSWORD_ATTENTION}
       POSTGRES_USERNAME_MEDIA: ${DB_USERNAME_MEDIA}
       POSTGRES_PASSWORD_MEDIA: ${DB_PASSWORD_MEDIA}
+      POSTGRES_USERNAME_MIND_TRACK: ${DB_USERNAME_MIND_TRACK}
+      POSTGRES_PASSWORD_MIND_TRACK: ${DB_PASSWORD_MIND_TRACK}
     ports:
       - "5432:5432"
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data
+#      - ./init-multiple-databases.sh:/docker-entrypoint-initdb.d/init-multiple-databases.sh
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./init-multiple-databases.sh:/docker-entrypoint-initdb.d/init-multiple-databases.sh
+      - ./pgdata:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro
     networks:
       - cloud-network
 

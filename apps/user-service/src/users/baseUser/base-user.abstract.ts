@@ -1,11 +1,8 @@
-import { Column, PrimaryColumn } from 'typeorm';
+import { Column, CreateDateColumn, PrimaryColumn } from 'typeorm';
 import { Role } from '@app/common/enums/role.enum';
 
 export abstract class BaseUser {
   @PrimaryColumn()
-  id: number;
-
-  @Column()
   uuid: string;
 
   @Column({ nullable: true })
@@ -20,10 +17,13 @@ export abstract class BaseUser {
   @Column({
     type: 'enum',
     enum: Role,
-    default: Role.USER,
+    default: Role.User,
   })
   role: Role;
 
   @Column()
   active: boolean;
+
+  @CreateDateColumn({ type: 'timestamptz' })
+  createdAt: Date;
 }

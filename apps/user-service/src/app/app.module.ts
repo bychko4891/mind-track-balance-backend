@@ -29,12 +29,13 @@ import { JwtStrategyModule } from '@app/common/strategy/jwt-stratedy.module';
         password: config.get<string>('DB_PASSWORD_USER'),
         database: config.get<string>('DB_NAME_USER'),
         entities: [AdminUser, User],
-        migrations: ['dist/migrations/*.js'],
+        // migrations: ['dist/migrations/*.js'],
+        migrations: ['dist/apps/user-service/migrations/*.js'],
         cli: {
           migrationsDir: 'src/migrations',
         },
-        // synchronize: false,
-        synchronize: true,
+        synchronize: false,
+        // synchronize: true,
       }),
 
       inject: [ConfigService],

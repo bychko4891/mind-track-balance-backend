@@ -27,6 +27,34 @@
     "start:attention": "nest start attention-service --watch",
     "start:dev:attention": "nest start attention-service --watch",
     "start:debug:attention": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register apps/attention-service/src/main.ts",
+
+    "typeorm:auth": "node --require ts-node/register --require tsconfig-paths/register ./node_modules/typeorm/cli.js -d apps/auth-service/src/ormconfig.ts",
+    "typeorm:user": "node --require ts-node/register --require tsconfig-paths/register ./node_modules/typeorm/cli.js -d apps/user-service/src/ormconfig.ts",
+    "typeorm:public": "node --require ts-node/register --require tsconfig-paths/register ./node_modules/typeorm/cli.js -d apps/public-content-service/src/ormconfig.ts",
+    "typeorm:attention": "node --require ts-node/register --require tsconfig-paths/register ./node_modules/typeorm/cli.js -d apps/attention-service/src/ormconfig.ts",
+
+    "auth:migration:create": "npm run typeorm:auth -- migration:create apps/auth-service/src/migrations/Init",
+    "auth:migration:generate": "npm run typeorm:auth -- migration:generate apps/auth-service/src/migrations/Auto",
+    "auth:migration:run": "npm run typeorm:auth -- migration:run",
+    "auth:migration:revert": "npm run typeorm:auth -- migration:revert",
+
+    "user:migration:create": "npm run typeorm:user -- migration:create apps/user-service/src/migrations/Init",
+    "user:migration:generate": "npm run typeorm:user -- migration:generate apps/user-service/src/migrations/Auto",
+    "user:migration:run": "npm run typeorm:user -- migration:run",
+    "user:migration:revert": "npm run typeorm:user -- migration:revert",
+
+    "public:migration:create": "npm run typeorm:public -- migration:create apps/public-content-service/src/migrations/Init",
+    "public:migration:generate": "npm run typeorm:public -- migration:generate apps/public-content-service/src/migrations/Auto",
+    "public:migration:run": "npm run typeorm:public -- migration:run",
+    "public:migration:revert": "npm run typeorm:public -- migration:revert",
+
+    "attention:migration:create": "npm run typeorm:attention -- migration:create apps/attention-service/src/migrations/Init",
+    "attention:migration:generate": "npm run typeorm:attention -- migration:generate apps/attention-service/src/migrations/Auto",
+    "attention:migration:run": "npm run typeorm:attention -- migration:run",
+    "attention:migration:revert": "npm run typeorm:attention -- migration:revert",
+
+    "migrations:run:all": "npm run user:migration:run && npm run auth:migration:run && npm run public:migration:run && npm run attention:migration:run",
+    "migrations:revert:all": "npm run attention:migration:revert && npm run public:migration:revert && npm run auth:migration:revert && npm run user:migration:revert",
     "format": "prettier --write \"{apps,libs,test}/**/*.ts\"",
     "lint": "eslint \"{apps,libs,src,test}/**/*.ts\" --fix --cache --cache-location .eslintcache",
     "lint:fast": "cross-env ESLINT_NO_TYPE_CHECK=1 eslint \"{apps,libs,src,test}/**/*.ts\" --fix --cache --cache-location .eslintcache",

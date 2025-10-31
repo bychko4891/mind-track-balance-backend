@@ -48,7 +48,8 @@ import { RsaKey } from '../rsa-key/rsa-key.entity';
           password: config.get<string>('DB_PASSWORD_AUTH'), // саме тут проблема
           database: config.get<string>('DB_NAME_AUTH'),
           entities: [RsaKey, AuthUser, AuthUserJwtRefreshToken],
-          synchronize: true,
+          synchronize: false,
+          // synchronize: true,
         };
       },
       inject: [ConfigService],

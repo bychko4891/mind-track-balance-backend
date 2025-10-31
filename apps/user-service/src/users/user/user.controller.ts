@@ -13,7 +13,7 @@ export class UserCreatedEvent {
 @Controller('/api/v1/admin')
 export class UserController {
   @Get('me')
-  @Roles(Role.USER, Role.Admin, Role.MODERATOR) // Доступ для будь-якого залогіненого юзера
+  @Roles(Role.User, Role.Admin) // Доступ для будь-якого залогіненого юзера
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   getProfile() {
     return { message: 'This is your profile data from User Service!' };

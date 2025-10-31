@@ -8,7 +8,7 @@ import { JwtTokensDto } from './dto/jwt-tokens.dto';
 import { AuthUser } from '../auth-user/auth-user.entity';
 
 export interface TokenPayload {
-  sub: number;
+  sub: string;
   role: string;
 }
 
@@ -31,7 +31,7 @@ export class AuthService {
     deletionTime.setDate(deletionTime.getDate() + 7);
     const tokens = await this._createTokens(user);
     user.jwtRefreshToken.deletionTime = deletionTime;
-    user.jwtRefreshToken.deviceFingerprinting = loginDto.deviceId;
+    user.jwtRefreshToken.deviceId = loginDto.deviceId;
     user.jwtRefreshToken.jwtRefreshToken = await this._hashJwtRefreshToken(
       tokens.refreshToken,
     );
@@ -75,7 +75,7 @@ export class AuthService {
 
   private async _createTokens(user: AuthUser): Promise<JwtTokensDto> {
     const payload: TokenPayload = {
-      sub: user.id,
+      sub: user.uuid,
       role: user.role,
     };
 
@@ -98,7 +98,7 @@ export class AuthService {
         issuer: 'auth-service',
       }),
       this.jwtService.signAsync(
-        { sub: user.id },
+        { sub: user.uuid },
         {
           secret: refreshTokenSecret,
           algorithm: 'HS256',

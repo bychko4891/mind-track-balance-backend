@@ -19,7 +19,7 @@ export class WellKnownController {
       keys: [
         {
           ...jwk,
-          kid: currentKey.id.toString(),
+          kid: currentKey.uuid,
           use: 'sig',
           alg: 'RS256',
         },

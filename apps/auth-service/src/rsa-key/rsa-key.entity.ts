@@ -7,21 +7,21 @@ import {
 
 @Entity('rsa_keys')
 export class RsaKey {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  uuid!: string;
 
-  @Column({ type: 'text' })
-  publicKey: string;
+  @Column({ name: 'public_key', type: 'text', nullable: false })
+  publicKey!: string;
 
-  @Column({ type: 'text' })
-  privateKey: string;
+  @Column({ name: 'private_key', type: 'text', nullable: false })
+  privateKey!: string;
 
-  @Column()
-  revoked: boolean;
+  @Column({ type: 'boolean', default: false })
+  revoked: boolean = false;
 
-  @Column()
+  @Column({ type: 'timestamp', name: 'date_of_revoked' })
   dateOfRevoked: Date;
 
-  @CreateDateColumn()
-  createdAt: Date;
+  @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
+  createdAt!: Date;
 }

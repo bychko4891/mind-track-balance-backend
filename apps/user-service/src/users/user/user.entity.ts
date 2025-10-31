@@ -20,7 +20,7 @@ export class User extends BaseUser {
     name: 'user_gender',
     type: 'enum',
     enum: UserGender,
-    default: UserGender.FEMALE,
+    default: UserGender.Other,
   })
   gender: UserGender;
 
@@ -30,6 +30,5 @@ export class User extends BaseUser {
   @Column({ nullable: true, name: 'last_visit' })
   lastVisit: Date;
 
-  @Column({ name: 'create_at', type: 'timestamp' })
-  createdAt: Date;
+
 }
