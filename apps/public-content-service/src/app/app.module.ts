@@ -5,10 +5,11 @@ import { CommonModule } from '@app/common';
 import { JwtStrategyModule } from '@app/common/strategy/jwt-stratedy.module';
 import { PassportModule } from '@nestjs/passport';
 import { Page } from '../page/page.entity';
-import { PublicImage } from '../image/public-image.entity';
+import { Image } from '../public-image/image/image.entity';
 import { SeoObject } from '../seo/seo-object.entity';
 import { PageBlock } from '../page-block/page-block.entity';
 import { PageBlockTranslation } from '../page-block/page-block-translation.entity';
+import { IconImage } from '../public-image/icon/icon.entity';
 
 @Module({
   imports: [
@@ -38,7 +39,8 @@ import { PageBlockTranslation } from '../page-block/page-block-translation.entit
             PageBlock,
             PageBlockTranslation,
             SeoObject,
-            PublicImage,
+            IconImage,
+            Image,
           ],
           synchronize: true,
         };

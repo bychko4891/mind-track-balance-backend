@@ -6,17 +6,19 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { UiColorToken } from '@app/common/enums/ui-color-token.enum';
-import { PublicImage } from '../image/public-image.entity';
 import { Page } from '../page/page.entity';
 import { Orientation } from '@app/common/enums/orientation.enum';
 import { MotionVariant } from '@app/common/enums/motion-variant.enum';
 import { PageSection } from '@app/common/enums/page-section.enum';
 import { SlotArea } from '@app/common/enums/slot-area.enum';
 import { PageBlockTranslation } from './page-block-translation.entity';
+import { Image } from '../public-image/image/image.entity';
+import { IconImage } from '../public-image/icon/icon.entity';
 
 @Index('idx_page_section_area_sort', ['page', 'section', 'area', 'sortOrder'])
 @Entity('page_blocks')
@@ -31,8 +33,9 @@ export class PageBlock {
   @OneToMany(() => PageBlock, (b) => b.parent, {
     cascade: ['insert', 'update'],
     orphanedRowAction: 'delete',
+    nullable: true,
   })
-  children: PageBlock[] = [];
+  children: PageBlock[] | null = null;
 
   @Index()
   @ManyToOne(() => PageBlock, (b) => b.children, {
@@ -50,11 +53,21 @@ export class PageBlock {
   @JoinColumn({ name: 'page_id', referencedColumnName: 'uuid' })
   page!: Page;
 
-  @OneToMany(() => PublicImage, (image) => image.block, {
+  @OneToMany(() => Image, (i) => i.block, {
     cascade: ['insert', 'update'],
     orphanedRowAction: 'delete',
+    nullable: true,
+    eager: true,
   })
-  images: PublicImage[] = [];
+  images: Image[] | null = null;
+
+  @OneToOne(() => IconImage, (icon) => icon.block, {
+    cascade: ['insert', 'update'],
+    orphanedRowAction: 'delete',
+    eager: true,
+    nullable: true,
+  })
+  iconImage?: IconImage | null;
 
   @Column({
     type: 'enum',
@@ -97,7 +110,7 @@ export class PageBlock {
   @OneToMany(() => PageBlockTranslation, (t) => t.block, {
     cascade: true,
   })
-  translations: PageBlockTranslation[] = [];
+  translations!: PageBlockTranslation[];
 
   @CreateDateColumn({ type: 'timestamptz' })
   createdAt!: Date;

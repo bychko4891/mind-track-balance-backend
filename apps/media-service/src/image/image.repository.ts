@@ -1,13 +1,13 @@
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
-import { PublicImage } from './public-image.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Image } from './image.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
-export class PublicImageRepository {
+export class ImageRepository {
   constructor(
-    @InjectRepository(PublicImage)
-    private readonly repository: Repository<PublicImage>,
+    @InjectRepository(Image)
+    private readonly repository: Repository<Image>,
   ) {}
 
   // async findByEmail(email: string): Promise<User  | null> {

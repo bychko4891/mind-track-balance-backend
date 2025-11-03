@@ -8,7 +8,7 @@ import { EventPattern, Payload } from '@nestjs/microservices';
 @Controller('/api/v1/admin')
 export class AdminUserController {
   @Get('me')
-  @Roles(Role.User, Role.Admin) // Доступ для будь-якого залогіненого юзера
+  @Roles(Role.Admin) // Доступ для будь-якого залогіненого юзера
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   getProfile() {
     return { message: 'This is your profile data from User Service!' };

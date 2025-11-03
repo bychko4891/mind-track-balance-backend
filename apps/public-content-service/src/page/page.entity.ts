@@ -31,14 +31,14 @@ export class Page {
   @OneToMany(() => SeoObject, (seo) => seo.page, {
     cascade: true,
   })
-  seoObjectTranslation: SeoObject[] = [];
+  seoObjectTranslation: SeoObject[];
 
   @OneToMany(() => PageBlock, (b) => b.page, {
     eager: true,
     cascade: true,
     // cascade: ['insert', 'update'],
   })
-  blocks: PageBlock[] = [];
+  blocks: PageBlock[];
 
   @CreateDateColumn({ type: 'timestamptz' })
   createdAt!: Date;

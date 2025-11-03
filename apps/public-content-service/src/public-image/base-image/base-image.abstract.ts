@@ -1,23 +1,9 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column } from 'typeorm';
 import { MotionVariant } from '@app/common/enums/motion-variant.enum';
 import { UiColorToken } from '@app/common/enums/ui-color-token.enum';
 import { Position } from '@app/common/enums/position.enum';
-import { PageBlock } from '../page-block/page-block.entity';
 
-@Entity('public_images')
-export class PublicImage {
-  @PrimaryGeneratedColumn()
-  id!: number;
-
-  @Column()
-  imageName!: string;
-
-  @Column({ nullable: true })
-  imageIconName: string | null = null;
-
-  @Column({ nullable: false })
-  storageId!: number;
-
+export abstract class BaseImage {
   @Column({ type: 'int', default: 0 })
   widthPx: number;
 
@@ -45,8 +31,4 @@ export class PublicImage {
     default: UiColorToken.Default,
   })
   color: UiColorToken = UiColorToken.Default;
-
-  @ManyToOne(() => PageBlock, (b) => b.images, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'block_id', referencedColumnName: 'uuid' })
-  block!: PageBlock;
 }

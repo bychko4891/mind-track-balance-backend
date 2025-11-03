@@ -32,13 +32,31 @@
         "tsConfigPath": "apps/user-service/tsconfig.build.json"
       }
     },
-    "notification-service": {
+    "media-service": {
       "type": "application",
-      "root": "apps/notification-service",
-      "sourceRoot": "apps/notification-service/src",
+      "root": "apps/media-service",
+      "sourceRoot": "apps/media-service/src",
       "entryFile": "main",
       "compilerOptions": {
-        "tsConfigPath": "apps/notification-service/tsconfig.build.json"
+        "tsConfigPath": "apps/media-service/tsconfig.build.json"
+      }
+    },
+    "attention-service": {
+      "type": "application",
+      "root": "apps/attention-service",
+      "sourceRoot": "apps/attention-service/src",
+      "entryFile": "main",
+      "compilerOptions": {
+        "tsConfigPath": "apps/attention-service/tsconfig.build.json"
+      }
+    },
+    "mind-track-service": {
+      "type": "application",
+      "root": "apps/mind-track-service",
+      "sourceRoot": "apps/mind-track-service/src",
+      "entryFile": "main",
+      "compilerOptions": {
+        "tsConfigPath": "apps/mind-track-service/tsconfig.build.json"
       }
     },
     "common": {

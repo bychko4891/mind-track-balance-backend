@@ -10,10 +10,10 @@ export class UserCreatedEvent {
   email: string;
 }
 
-@Controller('/api/v1/admin')
+@Controller('/api/v1/user')
 export class UserController {
   @Get('me')
-  @Roles(Role.User, Role.Admin) // Доступ для будь-якого залогіненого юзера
+  @Roles(Role.User, Role.Admin)
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   getProfile() {
     return { message: 'This is your profile data from User Service!' };
