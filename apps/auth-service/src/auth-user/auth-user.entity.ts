@@ -22,10 +22,10 @@ export class AuthUser {
   @Column({ type: 'boolean', default: false })
   active: boolean = false;
 
-  @Column({ type: 'integer', nullable: true })
+  @Column({ name: 'service_code', type: 'integer', nullable: true })
   serviceCode: number | null = null;
 
-  @Column({ type: 'uuid', nullable: true })
+  @Column({ name: 'service_code_uuid', type: 'uuid', nullable: true })
   serviceCodeUUID: string | null = null;
 
   @Column({
@@ -39,12 +39,12 @@ export class AuthUser {
     () => AuthUserJwtRefreshToken,
     (jwtRefreshToken) => jwtRefreshToken.user,
     {
-      onDelete: 'CASCADE',
       cascade: ['insert', 'update', 'remove'],
+      nullable: true,
     },
   )
   jwtRefreshToken: AuthUserJwtRefreshToken;
 
-  @CreateDateColumn({ type: 'timestamp' }) // timestamp або 'timestamptz' для з таймзоною
+  @CreateDateColumn({ name: 'created_at', type: 'timestamp' }) // timestamp або 'timestamptz' для з таймзоною
   createdAt: Date;
 }

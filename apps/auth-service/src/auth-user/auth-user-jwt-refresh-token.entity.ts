@@ -7,16 +7,18 @@ export class AuthUserJwtRefreshToken {
   @PrimaryGeneratedColumn('uuid')
   uuid!: string;
 
-  @Column({ nullable: true })
+  @Column({ name: 'jwt_refresh_token', nullable: true })
   jwtRefreshToken: string;
 
-  @Column({ nullable: true })
+  @Column({ name: 'device_id', nullable: true })
   deviceId: string;
 
-  @OneToOne(() => AuthUser, (user) => user.jwtRefreshToken)
-  @JoinColumn()
+  @OneToOne(() => AuthUser, (user) => user.jwtRefreshToken, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'user_uuid', referencedColumnName: 'uuid' })
   user: AuthUser;
 
-  @Column({ nullable: true, type: 'timestamp' })
+  @Column({ name: 'deletion_time', nullable: true, type: 'timestamp' })
   deletionTime: Date;
 }

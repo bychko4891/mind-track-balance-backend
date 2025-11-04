@@ -6,6 +6,7 @@ import { AuthUserService } from '../auth-user/auth-user.service';
 import { LoginDto } from './dto/login.dto';
 import { JwtTokensDto } from './dto/jwt-tokens.dto';
 import { AuthUser } from '../auth-user/auth-user.entity';
+import { AuthUserJwtRefreshToken } from '../auth-user/auth-user-jwt-refresh-token.entity';
 
 export interface TokenPayload {
   sub: string;
@@ -30,6 +31,11 @@ export class AuthService {
     const deletionTime = new Date();
     deletionTime.setDate(deletionTime.getDate() + 7);
     const tokens = await this._createTokens(user);
+    if (user.jwtRefreshToken == null) {
+      user.jwtRefreshToken = {
+        user: user,
+      } as AuthUserJwtRefreshToken;
+    }
     user.jwtRefreshToken.deletionTime = deletionTime;
     user.jwtRefreshToken.deviceId = loginDto.deviceId;
     user.jwtRefreshToken.jwtRefreshToken = await this._hashJwtRefreshToken(

@@ -6,6 +6,7 @@ import { Image } from '../image/image.entity';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MulterModule } from '@nestjs/platform-express';
+import { ImageVariant } from '../image/image-variant.entity';
 
 @Module({
   imports: [
@@ -25,7 +26,7 @@ import { MulterModule } from '@nestjs/platform-express';
         username: config.get<string>('DB_USERNAME_MEDIA'),
         password: config.get<string>('DB_PASSWORD_MEDIA'),
         database: config.get<string>('DB_NAME_MEDIA'),
-        entities: [Image],
+        entities: [Image, ImageVariant],
         // entities: [join(__dirname, '**', '*.entity.{ts,js}')],
         migrations: ['dist/migrations/*.js'],
         cli: {

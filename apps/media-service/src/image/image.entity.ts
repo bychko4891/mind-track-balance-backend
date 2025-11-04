@@ -1,16 +1,23 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { ImageVariant } from './image-variant.entity';
 
 @Entity('images')
 export class Image {
   @PrimaryGeneratedColumn('uuid')
   uuid!: string;
 
-  @Column({ type: 'varchar', length: 80, name: 'image_name', nullable: false })
-  imageName!: string;
+  @OneToMany(() => ImageVariant, (v) => v.image, {
+    cascade: ['insert', 'update'],
+    orphanedRowAction: 'delete',
+    eager: true,
+  })
+  variants!: ImageVariant[];
 
-  @Column({ type: 'varchar', length: 80, name: 'preview_image_name' })
-  previewImageName: string;
-
-  @Column({ type: 'varchar', nullable: false })
-  bucket!: string;
+  @CreateDateColumn()
+  createdAt!: Date;
 }
